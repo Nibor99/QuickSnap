@@ -15,7 +15,7 @@ namespace CardGames.GameLogic
 	public class Snap
 	{
 		// Keep only the last two cards...
-		private readonly Card[] _topCards = new Card[2];
+		private readonly Card[] _tTCards = new Card[2];
 
 		// Have a Deck of cards to play with.
 		private readonly Deck _deck;
@@ -48,7 +48,7 @@ namespace CardGames.GameLogic
 		{
 			get
 			{
-				return _topCards [1];
+				return _tTCards [1];
 			}
 		}
 
@@ -101,9 +101,9 @@ namespace CardGames.GameLogic
 		{
 			if (_deck.CardsRemaining > 0)			// have cards...
 			{
-				_topCards [0] = _topCards [1];		// move top to card 2
-				_topCards [1] = _deck.Draw ();		// get a new top card
-				_topCards[1].TurnOver();			// reveal card
+				_tTCards [0] = _tTCards [1];		// move top to card 2
+				_tTCards [1] = _deck.Draw ();		// get a new top card
+				_tTCards[1].TurnOver();			// reveal card
 			}
 		}
 
@@ -142,7 +142,7 @@ namespace CardGames.GameLogic
 			//TODO: consider deducting score for miss hits???
 			if ( player >= 0 && player < _score.Length &&  	// its a valid player
 				 IsStarted && 								// and the game is started
-				 _topCards [0] != null && _topCards [0].Rank == _topCards [1].Rank) // and its a match
+				 _tTCards [0] != null && _tTCards [0].Rank == _tTCards [1].Rank) // and its a match
 			{
 				_score[player]++;
 				//TODO: consider playing a sound here...
@@ -182,8 +182,8 @@ namespace CardGames.GameLogic
 
 				s.FlipNextCard ();
 
-				Assert.IsNull (s._topCards [0]);
-				Assert.IsNotNull (s._topCards [1]);
+				Assert.IsNull (s._tTCards [0]);
+				Assert.IsNotNull (s._tTCards [1]);
 			}
 		}
 
